@@ -11,7 +11,7 @@ class Texp extends CI_Controller {
 	public function __construct(){
 		parent::__construct(); 
 	}
-	
+
 	public function index()
 	{
 		echo 'welcome'; 
@@ -43,6 +43,14 @@ class Texp extends CI_Controller {
 						)); 
 						$response = curl_exec($curl);  
 		echo $response;
+	}
+
+	public function get_origin(){
+		$endpoint = 'http://119.110.72.234/api/v1/city/origin'; 
+		$access_token = $this->input->post('access_token');   
+		$getter = $endpoint.'?access_token='.$access_token;
+		$response = file_get_contents($getter,true);  
+		echo $response; 
 	}
 }
 
