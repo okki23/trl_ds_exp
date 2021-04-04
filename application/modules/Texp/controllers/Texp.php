@@ -48,10 +48,42 @@ class Texp extends CI_Controller {
 	public function get_origin(){
 		$endpoint = 'http://119.110.72.234/api/v1/city/origin'; 
 		$access_token = $this->input->post('access_token');   
-		$getter = $endpoint.'?access_token='.$access_token;
+		$getter = $endpoint.'?access_token='.$access_token; 
 		$response = file_get_contents($getter,true);  
 		echo $response; 
 	}
+
+	public function get_destination_cities(){
+		$endpoint = 'http://119.110.72.234/api/v1/city/destination/'; 
+		$access_token = $this->input->post('access_token');  
+		$origin = $this->input->post('origin');   
+		$getter = $endpoint.$origin.'?access_token='.$access_token; 
+		$response = file_get_contents($getter,true);  
+		echo $response; 
+	}
+
+	public function get_destination_by_service(){
+		$endpoint = 'http://119.110.72.234/api/v1/city/destinationByService/'; 
+		$access_token = $this->input->post('access_token');  
+		$origin = $this->input->post('origin');   
+		$service_type = $this->input->post('service_type');   
+		$getter = $endpoint.$origin.'/'.$service_type.'?access_token='.$access_token; 
+		$response = file_get_contents($getter,true);  
+		echo $response; 
+	}
+	//http://119.110.72.234/api/v1/tariff/options/{from}/{to}/{weight}
+	public function get_tarif_option(){
+		$endpoint = 'http://119.110.72.234/api/v1/tariff/options/'; 
+		$access_token = $this->input->post('access_token');   
+		$from = $this->input->post('from');   
+		$to = $this->input->post('to');   
+		$weight = $this->input->post('weight');   
+		$getter = $endpoint.$from.'/'.$to.'/'.$weight.'?access_token='.$access_token; 
+		$response = file_get_contents($getter,true);  
+		echo $response; 
+	}
+	
+	 
 }
 
 
