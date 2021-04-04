@@ -71,7 +71,7 @@ class Texp extends CI_Controller {
 		$response = file_get_contents($getter,true);  
 		echo $response; 
 	}
-	//http://119.110.72.234/api/v1/tariff/options/{from}/{to}/{weight}
+	 
 	public function get_tarif_option(){
 		$endpoint = 'http://119.110.72.234/api/v1/tariff/options/'; 
 		$access_token = $this->input->post('access_token');   
@@ -79,6 +79,36 @@ class Texp extends CI_Controller {
 		$to = $this->input->post('to');   
 		$weight = $this->input->post('weight');   
 		$getter = $endpoint.$from.'/'.$to.'/'.$weight.'?access_token='.$access_token; 
+		$response = file_get_contents($getter,true);  
+		echo $response; 
+	}
+
+	public function get_tarif_specific_service(){
+		$endpoint = 'http://119.110.72.234/api/v1/tariff/calculate/'; 
+		$access_token = $this->input->post('access_token');   
+		$from = $this->input->post('from');   
+		$to = $this->input->post('to');   
+		$weight = $this->input->post('weight'); 
+		$service_type = $this->input->post('service_type');   
+		$getter = $endpoint.$from.'/'.$to.'/'.$service_type.'/'.$weight.'?access_token='.$access_token; 
+		$response = file_get_contents($getter,true);  
+		echo $response; 
+	}
+
+	public function get_info_status(){
+		$endpoint = 'http://119.110.72.234/api/v1/shipment/'; 
+		$access_token = $this->input->post('access_token');   
+		$no_resi = $this->input->post('no_resi');   
+		$getter = $endpoint.$no_resi.'?access_token='.$access_token; 
+		$response = file_get_contents($getter,true);  
+		echo $response; 
+	}
+
+	public function get_info_zipcode(){
+		$endpoint = 'http://119.110.72.234/api/v1/city/name/'; 
+		$access_token = $this->input->post('access_token');   
+		$zipcode = $this->input->post('zipcode');   
+		$getter = $endpoint.$zipcode.'?access_token='.$access_token; 
 		$response = file_get_contents($getter,true);  
 		echo $response; 
 	}
