@@ -112,7 +112,16 @@ class Texp extends CI_Controller {
 		$response = file_get_contents($getter,true);  
 		echo $response; 
 	}
-	
+
+	public function get_received_status(){
+		$endpoint = 'http://119.110.72.234/api/v1/shipment/'; 
+		$access_token = $this->input->post('access_token');   
+		$no_resi = $this->input->post('no_resi');   
+		$getter = $endpoint.$no_resi.'/status_received?access_token='.$access_token;  
+		$response = file_get_contents($getter,true);  
+		echo $response; 
+	}
+
 	 
 }
 
